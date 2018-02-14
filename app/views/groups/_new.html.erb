@@ -16,11 +16,6 @@
                         <%= form.label :criteria %>
                         <%= form.select :criteria, [["First", "1st"], ["Second", "2nd"], ["Third", "3rd"]],{}, { class: "ui fluid dropdown" } %>
                     </div>
-                    <div class="field">
-                        <%= form.label :Select_Members %>
-                        <% @users.each do |u| %>                                    
-                        <% end %>  
-                    </div>
                     <% end %>
             </div>
             <div class="three wide column"></div>

@@ -4,7 +4,7 @@ class TodosController < ApplicationController
     before_action :set_todo, only: [:show,:edit,:update,:destroy]
 
     def index
-        @todos = ToDo.all        
+        @todos = ToDo.find(params[:project_id])
     end
     def new
         @todo = ToDo.new
@@ -13,12 +13,11 @@ class TodosController < ApplicationController
 
     def create
         @todo = ToDo.new(todo_params)
-        @todo.project_id = @project.id
-        @todo.status = "N"        
+        @todo.created_by = current_user.id
         if @todo.save
-            redirect_to projects_path	
+            redirect_to project_path(@project.id)
         else
-            render 'new'
+            redirect_to project_path(@project.id)
         end
     end
 
@@ -53,7 +52,7 @@ class TodosController < ApplicationController
     end
 
     def todo_params
-        params.require(:to_do).permit(:title,:_type,:status,:priority,:description)
+        params.require(:to_do).permit(:title,:_type,:status,:priority,:assignee,:project_id,:description,:created_by,:updated_by)
     end
 
     

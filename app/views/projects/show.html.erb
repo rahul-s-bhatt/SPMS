@@ -33,15 +33,15 @@
                 <div class="three fields">
                     <div class="field">
                         <label>Year</label>
-                        <p><%= @project.year %></p>
+                        <p><%= @project.year.titleize %></p>
                     </div>
                     <div class="field">
                         <label>Group</label>
-                        <p><%= @project.group_id %></p>
+                        <p><%= @project.group.name.titleize %></p>
                     </div>
                     <div class="field">
                         <label>Subject</label>
-                        <p><%= @project.subject_id %></p>
+                        <p><%= @project.subject.name.titleize %></p>
                     </div>
                 </div>
                 <br>
@@ -74,19 +74,15 @@
         <div class="ui horizontal divider">Todo</div>
         <div id="add_new_todo" data-tooltip="Add Todo" ><i class='checked calendar icon'></i></div>
         <div class="white-col">
-            <% if @todos.present? %>
+            <% if @project.todos.present? %>
             <div class="ui form show-data">
             <div class="ui middle aligned divided list">
-                <% @todos.each do |t| %>
-                    <div class="ui accordion">                        
-                        <%= image_tag  "avatar.png", class: "ui avatar image" %>
-                        <div class="content">
-                            <div class="header">
-                                <%= link_to project_todo_path(t.project_id, t) do %>
-                                    <%= t.title %>
-                                <% end %>
-                            </div>
-                            <p>
+                <% @project.todos.each do |t| %>
+                    <div class="item">
+                        <img src="<%= t.assigns.image_url %>" class="ui avatar image">
+                        <div class="content" style="width: 290px;">
+                            <%= link_to t.title, project_todo_path(t.project_id, t), class: "header" %>
+                            <div class="description">
                                 <span>
                                     <%= todo_priority(t) %>
                                 </span>
@@ -94,11 +90,7 @@
                                 <span style="font-size: 10px; float:right; color: #adadad">
                                     <%= time_ago_in_words(t.created_at) %> ago
                                 </span>
-                            </p>
-                            <div class="transition hidden">
-                                <%= t.status %>                                    
                             </div>
-                            <span style="display: none;"> <%= t.status %> </span>
                         </div>
                     </div>
                 <% end %>

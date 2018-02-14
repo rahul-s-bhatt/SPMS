@@ -26,7 +26,9 @@ class GroupsController < ApplicationController
     end
 
     def show
-        @users = User.find(params[:id])
+        @users = User.where(year: current_user.year, branch: current_user.branch).where.not(id: @group.users.pluck(:id))
+        @users = @users.map {|u| [u.name, u.id]}
+        @group_member = UserGroup.new
     end
 
     def update #save changes

@@ -3,9 +3,9 @@
 # Table name: subjects
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  year       :string
-#  code       :string
+#  name       :string(255)
+#  year       :string(255)
+#  code       :string(255)
 #  created_by :integer
 #  updated_by :integer
 #  created_at :datetime         not null

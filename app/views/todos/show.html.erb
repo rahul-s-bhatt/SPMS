@@ -1,46 +1,79 @@
-<div class="ui grid">
+<div class="ui three column relaxed grid no-margins">
 
-    <div class="two wide column"></div>
+    <div class="three wide column"></div>
+    <div class="ten wide column">
+        <div class="ui horizontal divider">ToDo</div>
+        <div class="white-col">
+            <div class="ui form show-data">
+                <div class="field">
+                    <label>Title</label>
+                    <p>
+                        <%= @todo.title %>
+                    </p>
+                </div>
+                <br>
+                <div class="field">
+                    <label>Type</label>
+                    <p>
+                        <%= @todo._type %>
+                    </p>
+                </div>
+                <div class="field">
+                    <label>Status</label>
+                    <p>
+                        <%= @todo.status %>
+                    </p>
+                </div>
+                <div class="field">
+                    <label>Priority</label>
+                    <p>
+                        <%= @todo.priority %>
+                    </p>
+                </div>
+                <div class="field">
+                    <label>Assignee</label>
+                    <p>
+                        <%= @todo.assignee %>
+                    </p>
+                </div>
+                <div class="field">
+                    <label>Description</label>
+                    <p>
+                        <%= @todo.description %>
+                    </p>
+                </div>
+                <div class="field">
+                    <label>Project Name</label>
+                    <p>
+                        <%= @todo.project_id %>
+                    </p>
+                </div>
+            </div>
 
-    <div class="fourteen wide column">
-
-        <div class="ui vertical center aligned segment">
-            <h3 class="ui header">
-                <%= @todo.title %>
-            </h3>
-            <p>
-                Type:  <%= @todo._type %>
-            </p>
-            <p>
-                Status:  <%= @todo.status %>
-            </p>
-            <p>
-                Priority:  <%= @todo.priority %>
-            </p>
-            <p>
-                Assigned To:  <%= @todo.assignee %>
-            </p>
-            <p>
-                Description:  <%= @todo.description %>
-            </p>
-            <p>
-                Project:  <%= @todo.project_id %>
-            </p>
-            <p>
-                Created By:  <%= @todo.created_by %>
-            </p>
-            <p>
-                Updated By:  <%= @todo.updated_by %>
-            </p>
-            <p>
+            <!-- <p>
                 <%= link_to 'Edit ToDos', edit_project_todo_path(@project), class: "ui button"%>
             </p>
             <p>
                 <%= link_to 'Delete ToDos', project_todo_path(@project), class: "ui button" ,method: :delete, :data => {:confirm => p(:AreYouSure? )}%>
-            </p>
+            </p> -->
+
         </div>
-
     </div>
-
-    <div class="two wide column"></div>
+    <div class="three wide column"></div>
 </div>
+<div class="custom-create-new-project" id="add_new_member" data-tooltip="Add project">+</div>
+<div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Add Project
+    </div>
+    <%= render partial: "new" %>
+</div>
+
+<script>
+    $(document).ready(function (e) {
+        $('#add_new_member').on('click', function (e) {
+            $('.ui.modal').modal('show');
+        });
+    });
+</script>

@@ -2,13 +2,14 @@
 
 <div class="ui grid no-margins">
     <div class="sixteen wide column <%= !@projects.present? ? 'center aligned' : '' %>">
+        <div class="ui horizontal divider">Projects</div>
         <!-- <div class="white-col"> -->
         <% if @projects.present? %>
             <div class="ui three cards" >
                 <% @projects.each do |p| %>
                     <div class="ui card">
                         <div class="image">
-                            <img src="<%= p.image_url %>">
+                            <img src="<%= p.image_url %>" style="width: 347px;height: 214px;">
                         </div>
                         <div class="content">
                             <%= link_to  p.title, project_path(p), class: 'header' %>
@@ -24,12 +25,12 @@
                             </span>
                             <span class="right-gap-15px">
                                 <i class="tasks icon"></i>
-                                <%= @todos.count %>                                
+                                <%= p.todos.count %>                                
                             </span>
                         </div>
-                        <div class="ui bottom attached progress">
+                        <!-- <div class="ui bottom attached progress">
                             <div class="bar"></div>
-                        </div>
+                        </div> -->
                     </div>
                 <% end %>
             </div>

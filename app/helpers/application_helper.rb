@@ -7,5 +7,6 @@ module ApplicationHelper
             '<i class="arrow circle down icon"></i>'.html_safe
         end
       end
+
 end
 

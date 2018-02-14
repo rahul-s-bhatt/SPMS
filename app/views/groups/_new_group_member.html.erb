@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="three wide column"></div>
+            <div class="ten wide column">
+                <%= form_for(@group_member, html: {class: "ui form"}) do |form| %>
+                    <div class="field">
+                        <label>Member</label>
+                        <%= form.select :user_id, @users, {:include_blank => '-- Select One --'}, { class: "ui fluid dropdown", required: true } %>
+                    </div>
+                    <div class="field">
+                        <%= form.hidden_field :group_id, value: @group.id %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="three wide column"></div>
+        </div>
+    </div>
+</div>
+<div class="actions">
+    <input type="submit" class="ui black button" form="new_user_group" />
+</div>
+<script>
+    $('#users-drop-down .ui.special.dropdown')
+        .dropdown({
+            useLabels: false,
+            maxSelections: 3
+        })
+        ;
+</script>

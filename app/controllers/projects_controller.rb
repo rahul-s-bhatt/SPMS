@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
         # @comments = current_user.projects.includes(:users)
         @comments = Comment.all 
         # @todos = current_user.projects.includes(:users)        
-        @todos = ToDo.all      
+        @todos = ToDo.where(project_id: current_user.groups.pluck(:id)).includes(:project)
         # @users = User.all            
     end
 
