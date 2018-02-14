@@ -1,0 +1,76 @@
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        button:hover,
+        a:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="text-align:center">User Profile Card</h2>
+
+    <div class="card">
+        <%= image_tag  current_user.image_url, style: "width:100%" %>
+        <h1><%= current_user.name%></h1>
+        <p class="title">Leader</p>
+        <p>Thakur Polytechnic</p>
+        <p><%= current_user.name%></p>
+        <p>Roll No : <%= current_user.roll_no%></p>
+        <p><%= current_user.year%><%= current_user.branch%></p>         
+        <div style="margin: 24px 0;">        
+        <p>Total Groups in: <%= current_user.groups.count%></p>        
+        <div style="margin: 24px 0;">
+            <a href="#">
+                <i class="facebook f icon"></i>
+            </a>
+            <a href="#">
+                <i class="google plus icon"></i>
+            </a>
+            <a href="#">
+                <i class="linkedin icon"></i>
+            </a>
+            <a href="#">
+                <i class="twitter icon"></i>
+            </a>
+        </div>
+        <p>
+            <button>Contact</button>
+        </p>
+    </div>
+
+</body>

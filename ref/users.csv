@@ -1,0 +1,7 @@
+role,email,name,roll_no,year,branch,image_url
+student,r@site.com,Rahul Bhatt,1,TY,CO,/images/users/3.png
+student,p@site.com,Parth Nagarkar,2,TY,CO,/images/users/4.png
+student,y@site.com,Yash Bhavsar,3,TY,CO,/images/users/5.png
+student,a@site.com,Abhishek Bhurke,4,TY,CO,/images/users/6.png
+student,d@site.com,Dharmik Doshi,5,TY,CO,/images/users/7.png
+mentor,n@site.com,Neelam Parmar,,,,/images/users/2.png

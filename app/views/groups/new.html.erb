@@ -1,0 +1,28 @@
+<div class="ui grid">
+    <div class="five wide column"></div>
+    <div class="six wide column">
+        <h1>Add Group</h1>
+        <br>
+        <%= form_for( @group , html: {class: "ui form"}) do |form| %>
+            <p>
+                <%= form.label :name %>
+                    <%= form.text_field :name %>
+            </p>
+
+            <p>
+                <%= form.label :code %>
+                    <%= form.text_field :code %>
+            </p>
+
+            <p>
+                <%= form.label :criteria %>
+                    <%= form.text_field :criteria %>
+            </p>
+            <p>
+                <%= form.submit"Submit" ,class: "ui button primary" %>
+
+            </p>
+            <% end %>
+    </div>
+    <div class="five wide column"></div>
+</div>

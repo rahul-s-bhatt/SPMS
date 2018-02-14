@@ -1,0 +1,59 @@
+<div class="content">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="three wide column"></div>
+            <div class="ten wide column">
+                <%= form_for( @project, html: {class: "ui form"}) do |form| %>
+                    <div class="field">
+                        <%= form.label :title %>
+                        <%= form.text_field :title %>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <%= form.label :start %>
+                            <div class="ui calendar" id="rangestart">
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <%= form.text_field :start %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <%= form.label :end %>
+                            <div class="ui calendar" id="rangeend">
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <%= form.text_field :end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <%= form.label :year %>
+                        <%= form.select :year, [["First Year", "fy"], ["Second Year", "sy"], ["Third Year", "ty"]], {}, { class: "ui fluid dropdown" } %>
+                    </div>
+                    <div class="field">
+                        <%= form.label :description %>
+                        <%= form.text_area :description %>
+                    </div>
+                    <div class="field">
+                        <%= form.label :group_id %>
+                        <%= form.select :group_id, Group.where(id: current_user.groups.pluck(:id)).map {|g| [ g.name, g.id ] }, {}, { class: "ui fluid dropdown" }%>
+                    </div>
+                    <div class="field">
+                        <%= form.label :subject_id %>
+                        <%= form.select :subject_id, Subject.all.map {|s| [ s.name, s.id ] }, {}, { class: "ui fluid dropdown" } %>
+                    </div>
+                    <div class="field">
+                        <%= form.label :image_url %>
+                        <%= form.text_field :image_url %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="three wide column"></div>
+        </div>
+    </div>
+</div>
+<div class="actions">
+    <input type="submit" class="ui black button" form="new_project" />
+</div>

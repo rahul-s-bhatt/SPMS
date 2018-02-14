@@ -1,0 +1,30 @@
+<br>
+<br>
+<div class="ui middle aligned center aligned grid">
+    <div class="ui large login-form">
+      <div class="column">
+        <h2 class="ui image header"><%= image_tag  "pm_logo.jpg", class: 'pm-logo-img' %>
+        <div class="content">Sign-Up in your account</div></h2>
+      <%= form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
+        <%= devise_error_messages! %>
+          <label>
+            <%= f.email_field :email, autofocus: true %>
+              <div class="label-text">What is your email?</div>
+          </label>
+
+          <label>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)<br><br><br></em>
+              <% end %>
+                <%= f.password_field :password, autocomplete: "off" %>
+                  <div class="label-text">Choose a password</div>
+          </label>
+          <label>
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              <div class="label-text">Confirm your password</div>
+          </label>
+          <%= f.submit "Sign up", class: "ui black button"%>
+            <% end %>
+    </div>
+  </div>
+</div>

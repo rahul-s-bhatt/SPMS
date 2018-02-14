@@ -1,0 +1,158 @@
+<div class="ui two column relaxed grid no-margins" >
+
+    <div class="ten wide column" >
+        <div class="ui horizontal divider">Project</div>
+        <div class="white-col">
+            <div class="ui form show-data">
+                <div class="field">
+                    <label>Title</label>
+                    <p><%= @project.title %></p>
+                </div>
+                <br>
+                <div class="two fields">
+                    <div class="field">
+                        <label>Start Date</label>
+                        <div class="ui calendar" id="rangestart">
+                            <div class="ui left icon">
+                                <i class="calendar icon"></i>
+                                <span><%= @project.start %></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>End Date</label>
+                        <div class="ui calendar" id="rangeend">
+                            <div class="ui left icon">
+                                <i class="calendar icon"></i>
+                                <span><%= @project.end %></spanp>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="three fields">
+                    <div class="field">
+                        <label>Year</label>
+                        <p><%= @project.year %></p>
+                    </div>
+                    <div class="field">
+                        <label>Group</label>
+                        <p><%= @project.group_id %></p>
+                    </div>
+                    <div class="field">
+                        <label>Subject</label>
+                        <p><%= @project.subject_id %></p>
+                    </div>
+                </div>
+                <br>
+                <div class="field">
+                    <label>Description</label>
+                    <p><%= @project.description %></p>
+                </div>
+            </div>
+            <br>
+            <div class="ui grid">
+                <div class="fourteen wide column no-padding"></div>
+                <div class="two wide column no-padding">
+                    <div class="ui tiny icon buttons">
+                        <button class="ui icon button" id="edit_project" data-tooltip="Edit your project">
+                            <i class="write icon"></i>
+                        </button>
+                        <div class="or"></div>
+                        <%= link_to project_path(@project), method: :delete, data: {confirm: "Are you sure?"} do %>
+                            <button class="ui icon negative button" data-tooltip="Delete your project">
+                                <i class="trash outline icon"></i>
+                            </button>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="six wide column <%= !@todo.present? ? 'center aligned' : '' %>">
+        <div class="ui horizontal divider">Todo</div>
+        <div id="add_new_todo" data-tooltip="Add Todo" ><i class='checked calendar icon'></i></div>
+        <div class="white-col">
+            <% if @todos.present? %>
+            <div class="ui form show-data">
+            <div class="ui middle aligned divided list">
+                <% @todos.each do |t| %>
+                    <div class="ui accordion">                        
+                        <%= image_tag  "avatar.png", class: "ui avatar image" %>
+                        <div class="content">
+                            <div class="header">
+                                <%= link_to project_todo_path(t.project_id, t) do %>
+                                    <%= t.title %>
+                                <% end %>
+                            </div>
+                            <p>
+                                <span>
+                                    <%= todo_priority(t) %>
+                                </span>
+                                <%= t._type %>
+                                <span style="font-size: 10px; float:right; color: #adadad">
+                                    <%= time_ago_in_words(t.created_at) %> ago
+                                </span>
+                            </p>
+                            <div class="transition hidden">
+                                <%= t.status %>                                    
+                            </div>
+                            <span style="display: none;"> <%= t.status %> </span>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <% else %>
+            <div class="ui message" style="background: white;text-align: center;">
+                <p>No todos yet start by creating one!</p>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<div class="ten wide column">
+    <div class="ui horizontal divider">Comments</div>
+    <div class="white-col">
+        <%= render partial: "comment/index" %>
+        <hr>
+        <%= render partial: "comment/new" %>
+    </div>
+</div>
+
+<div class="ui modal edit-project">
+    <i class="close icon"></i>
+    <div class="header">
+        Edit Details
+    </div>
+    <%= render partial: "edit" %>
+</div>
+
+<div class="ui modal add-todo">
+    <i class="close icon"></i>
+    <div class="header">
+        Add Todo
+    </div>
+    <%= render partial: "todos/new" %>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#edit_project').on('click', function (e) {
+            $('.ui.modal.edit-project').modal('show');
+        });
+        $('#add_new_todo').on('click', function (e) {
+            $('.ui.modal.add-todo').modal('show');
+        });
+        $('#rangestart').calendar({
+            type: 'date',
+            endCalendar: $('#rangeend')
+        });
+        $('#rangeend').calendar({
+            type: 'date',
+            startCalendar: $('#rangestart')
+        });
+    });
+</script>

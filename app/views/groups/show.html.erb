@@ -1,0 +1,125 @@
+<div class="ui three column relaxed grid no-margins">
+
+    <div class="three wide column"></div>
+    <div class="ten wide column">
+        <div class="ui horizontal divider">Group</div>
+        <div class="white-col">
+            <div class="ui form show-data">
+                <div class="field">
+                    <label>Title</label>
+                    <p>
+                        <%= @group.name %>
+                    </p>
+                </div>
+                <br>
+                <div class="field">
+                    <label>Code</label>
+                    <p>
+                        <%= @group.code %>
+                    </p>
+                </div>
+            </div>
+
+            <table class="ui very basic collapsing celled table" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Members</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @group.users.each do |u| %>
+                        <tr>
+                            <td>
+                                <h4 class="ui image header">
+                                    <%= image_tag  u.image_url, class: "ui mini rounded image" %>
+                                    <div class="content">
+                                        <%= u.name %>
+                                        <div class="sub header"><%= u.email %>
+                                        </div>
+                                    </div>
+                                </h4>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <div class="three wide column"></div>    
+</div>
+<div class="custom-create-new-project" id="add_new_member" data-tooltip="Add project">+</div>
+<div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Add Project
+    </div>
+    <%= render partial: "new" %>
+</div>
+
+<script>
+    $(document).ready(function (e) {
+        $('#add_new_member').on('click', function (e) {
+            $('.ui.modal').modal('show');
+        });
+    });
+</script>
+<!-- <div class="ui grid">
+
+    <div class="two wide column"></div>
+
+    <div class="fourteen wide column">
+
+        <div class="ui large breadcrumb">
+            <%= link_to  "Groups", groups_path, class: "section" %>
+                <i class="right chevron icon divider"></i>
+                <div class="active section">
+                    <%= @group.name %>
+                </div>
+        </div>
+        <br>
+        <br>
+        <div class="ui vertical segment">
+            <h3 class="ui header">
+                <%= @group.name %>
+            </h3>
+            <p>
+                Code:
+                <%= @group.code %>
+            </p>
+            <p>
+                Criteria:
+                <%= @group.criteria %>
+            <p>
+                Created By:
+                <%= @group.created_by %>
+            <p>
+                Updated By:
+                <%= @group.updated_by %>
+        </div>
+
+    </div>
+
+    <div class="two wide column">
+        
+    </div>
+
+
+</div> -->

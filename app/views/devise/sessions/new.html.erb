@@ -1,0 +1,26 @@
+<br>
+<br>
+<div class="ui middle aligned center aligned grid">
+    <div class="ui large login-form">
+      <div class="column">
+        <h2 class="ui image header"><%= image_tag  "pm_logo.jpg", class: 'pm-logo-img' %>
+        <div class="content">Log-in in your account</div></h2>
+        <%= form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
+          <label>
+            <%= f.email_field :email, autofocus: true %>
+            <div class="label-text">What is your email?</div>
+          </label>
+          <label>
+            <%= f.password_field :password, autocomplete: "off" %>
+            <div class="label-text">Choose a password</div>
+          </label>
+          <%= f.submit "Log in", class: "ui black button" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- <%= link_to('Sign Up', new_user_registration_path)  %> -->
+      <!-- <div class="app-links">
+            <%= render "devise/shared/links" %>
+      </div> -->
+

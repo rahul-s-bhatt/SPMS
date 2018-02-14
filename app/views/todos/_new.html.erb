@@ -1,0 +1,49 @@
+<div class="content">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="three wide column"></div>
+            <div class="ten wide column">
+        <%= form_for( @todo,url: project_todos_path(@project), html: {class: "ui form"}) do |form| %>
+                <div class="field">
+                <%= form.label :title %>
+                <%= form.text_field :title %>
+                </div>
+                
+                <div class="field">
+                    <%= form.label "Type" %>
+                    <%= form.select :_type,[["Bug", "bug"], ["Test", "test"], ["Defect", "defect"]], {}, { class: "ui fluid dropdown" } %>                
+                </div>
+
+                <div class="field">
+                    <label>Status</label> 
+                    <%= form.select :status,[["Todo", "Todo"], ["In Progress", "in progress"], ["Done", "Done"]], {}, { class: "ui fluid dropdown" } %>
+                </div>
+
+                <div class="field">
+                    <label>Priority</label>
+                    <%= form.select :priority,[["High", 1], ["Medium", 2], ["Low", 3]], {}, { class: "ui fluid dropdown" } %>
+                </div>
+
+                <div class="field">
+                    <label>Assign to</label>
+                    <%= form.select :assignee, @project.group.users.map {|u| [u.name, u.id]}, {}, { class: "ui fluid search dropdown" } %>
+                </div>
+
+                <div class="field">
+                    <%= form.hidden_field :project_id, value: @project.id %>
+                </div>
+
+                <div class="field">
+                    <%= form.label :description %>
+                    <%= form.text_area :description %>
+                </div>
+
+         <% end %>
+            </div>
+            <div class="three wide column"></div>
+        </div>
+    </div>
+</div>
+<div class="actions">
+    <input type="submit" class="ui black button" form="new_to_do" />
+</div>

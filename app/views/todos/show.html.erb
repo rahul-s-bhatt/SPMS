@@ -1,0 +1,46 @@
+<div class="ui grid">
+
+    <div class="two wide column"></div>
+
+    <div class="fourteen wide column">
+
+        <div class="ui vertical center aligned segment">
+            <h3 class="ui header">
+                <%= @todo.title %>
+            </h3>
+            <p>
+                Type:  <%= @todo._type %>
+            </p>
+            <p>
+                Status:  <%= @todo.status %>
+            </p>
+            <p>
+                Priority:  <%= @todo.priority %>
+            </p>
+            <p>
+                Assigned To:  <%= @todo.assignee %>
+            </p>
+            <p>
+                Description:  <%= @todo.description %>
+            </p>
+            <p>
+                Project:  <%= @todo.project_id %>
+            </p>
+            <p>
+                Created By:  <%= @todo.created_by %>
+            </p>
+            <p>
+                Updated By:  <%= @todo.updated_by %>
+            </p>
+            <p>
+                <%= link_to 'Edit ToDos', edit_project_todo_path(@project), class: "ui button"%>
+            </p>
+            <p>
+                <%= link_to 'Delete ToDos', project_todo_path(@project), class: "ui button" ,method: :delete, :data => {:confirm => p(:AreYouSure? )}%>
+            </p>
+        </div>
+
+    </div>
+
+    <div class="two wide column"></div>
+</div>

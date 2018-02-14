@@ -1,0 +1,64 @@
+<%= stylesheet_link_tag  'calendar.min.css', 'data-turbolinks-track': 'reload' %>
+
+    <div class="ui grid no-margins">
+        <div class="ui horizontal divider">Groups</div>
+        <div class="two wide column"></div>
+        <div class="twelve wide column <%= !@groups.present? ? 'center aligned' : '' %>">
+            <div class="white-col">
+                <% if @groups.present? %>
+                    <table class="ui celled striped table">
+                        <!-- collapsing -->
+                        <tbody>
+                            <% @groups.each do |g| %>
+                                <tr>
+                                    <td>
+                                        <%= link_to  g.name, group_path(g) %>
+                                    </td>
+                                    <td>
+                                        <div class="ui small basic label">
+                                            Code 
+                                            <div class="detail">
+                                                <%= g.code %>
+                                            </div>
+                                        </div>
+                                        <div class="ui small basic label">
+                                            Criteria
+                                            <div class="detail">
+                                                <%= g.criteria %>
+                                            </div>
+                                        </div>
+                                        <div class="ui small basic label">
+                                            <i class="users icon"></i>
+                                            <%= g.users.count %> Members
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>   
+                    </table> 
+                <% else %>
+                    <div class="ui message" style="background: white;text-align: center;">
+                        <p>No groups yet start by creating one!</p>
+                    </div>
+                <% end %>
+            <div class="custom-create-new-project" id="add_new_group" data-tooltip="Add Group">+</div>
+        </div>
+        <div class="two wide column"></div>
+    </div>
+
+    <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            Add Group
+        </div>
+        <%= render partial: "new" %>
+    </div>
+
+    <%= javascript_include_tag 'calendar.min.js', 'data-turbolinks-track': 'reload' %>
+        <script>
+            $(document).ready(function () {
+                $('#add_new_group').on('click', function (e) {
+                    $('.ui.modal').modal('show');
+                });
+            });
+        </script>

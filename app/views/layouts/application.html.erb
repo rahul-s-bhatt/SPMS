@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SPMS</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <div class="ui top fixed menu">
+      <div class="item">
+        <%= link_to root_path do %>
+          <%= image_tag  "pm_logo.jpg", class: 'pm-logo-img' %>
+        <% end %>
+      </div>
+      <%= link_to "Projects", projects_path, class: "item #{controller == 'project' ? 'active' : '' }" %>
+      <%= link_to "Groups", groups_path, class: "item #{controller == 'group' ? 'active' : '' }" %>
+
+      <div class="right menu">
+         <% if current_user.present? %>
+            <div class="ui dropdown item">
+              <%= image_tag  current_user.image_url %>
+              <div class="menu">
+                <%= link_to  "Profile", profile_user_path(current_user), class: 'item' %>
+                <%= link_to  "Sign out", destroy_user_session_path, method: :delete, class: 'item' %>
+              </div>
+            </div>
+          <% else %>
+            <% if controller_name == "sessions" and action_name == "new" %>
+              <%= link_to 'Sign up', new_user_registration_path, class: "ui teal item" %>
+            <% elsif controller_name == "registrations" and action_name == "new" %>
+              <%= link_to 'Sign in', new_user_session_path, class: "ui teal item" %>
+            <% else %>
+              <%= image_tag  current_user.image_url, class: "pm-avatar-img" %>
+            <% end %>
+         <% end %>
+      </div>
+    </div>
+
+    <div class="ui container main-container">
+      <%= yield %>
+    </div>
+
+    <script>
+      $('.ui.dropdown').dropdown();
+    </script>
+    
+  </body>
+</html>
