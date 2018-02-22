@@ -1,0 +1,19 @@
+<div class="content">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="three wide column"></div>
+            <div class="ten wide column">
+                <%= form_for( @project , html: {class: "ui form", id: "my_project_edit_form"}) do |form| %>
+                    <div class="field">
+                        <%= form.label :title %>
+                            <%= form.text_field :title %>
+                    </div>
+                    <% end %>
+            </div>
+            <div class="three wide column"></div>
+        </div>
+    </div>
+</div>
+<div class="actions">
+    <input type="submit" class="ui black button" form="my_project_edit_form" value="Save" />
+</div>

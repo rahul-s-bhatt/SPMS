@@ -13,8 +13,10 @@
           <%= image_tag  "pm_logo.jpg", class: 'pm-logo-img' %>
         <% end %>
       </div>
-      <%= link_to "Projects", projects_path, class: "item #{controller == 'project' ? 'active' : '' }" %>
-      <%= link_to "Groups", groups_path, class: "item #{controller == 'group' ? 'active' : '' }" %>
+      <% if current_user.present? %>
+        <%= link_to "Projects", projects_path, class: "item #{controller == 'project' ? 'active' : '' }" %>
+        <%= link_to "Groups", groups_path, class: "item #{controller == 'group' ? 'active' : '' }" %>
+      <% end %>
 
       <div class="right menu">
          <% if current_user.present? %>

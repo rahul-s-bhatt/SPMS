@@ -42,7 +42,7 @@
                     </div>
                     <div class="field">
                         <%= form.label :subject_id %>
-                        <%= form.select :subject_id, Subject.all.map {|s| [ s.name, s.id ] }, {}, { class: "ui fluid dropdown" } %>
+                        <%= form.select :subject_id, Subject.where(year: current_user.year ).map {|s| [ s.name, s.id ] }, {}, { class: "ui fluid dropdown" }%>                        
                     </div>
                     <div class="field">
                         <%= form.label :image_url %>

@@ -6,15 +6,20 @@
                 <%= form_for(@group, html: {class: "ui form"}) do |form| %>
                     <div class="field">
                         <%= form.label :name %>
-                            <%= form.text_field :name %>
+                        <%= form.text_field :name %>
                     </div>
                     <div class="field">
                         <%= form.label :code %>
-                            <%= form.text_field :code %>
+                        <%= form.number_field :code %>
                     </div>
                     <div class="field">
                         <%= form.label :criteria %>
                         <%= form.select :criteria, [["First", "1st"], ["Second", "2nd"], ["Third", "3rd"]],{}, { class: "ui fluid dropdown" } %>
+                    </div>
+
+                    <div class="field">
+                        <%= form.label :user_limit %>
+                        <%= form.number_field :user_limit %>
                     </div>
                     <% end %>
             </div>

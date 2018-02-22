@@ -11,6 +11,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  image_url  :text(65535)
+#  user_limit :integer          default(4)
 #
 
 class Group < ApplicationRecord

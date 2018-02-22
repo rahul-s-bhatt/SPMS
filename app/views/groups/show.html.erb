@@ -20,12 +20,25 @@
                 </div>
             </div>
 
+            <br>
+            <div class="ui tiny icon buttons">
+                <button class="ui icon button" id="edit_project" data-tooltip="Edit your group">
+                    <i class="write icon"></i>
+                </button>
+                <div class="or"></div>                
+                <%= link_to group_path(@group), method: :delete, data: {confirm: "Are you sure?"} do %>
+                    <button class="ui icon negative button" data-tooltip="Delete your Group">
+                        <i class="trash outline icon"></i>
+                    </button>
+                    <% end %>
+            </div>
+
             <table class="ui very basic collapsing celled table" style="width: 100%;">
                 <thead>
                     <tr>
                         <th>
                             Members
-                            <% if @users.count > 0 %>
+                            <% if (@users.count > 0) and (@group.users.count < @group.user_limit) %>
                                 <button class="ui tiny basic right floated button" id="add_new_member" data-tooltip="Add Group member" style="padding: 5px;">
                                     + Add
                                 </button>
@@ -34,16 +47,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% @group.users.each do |u| %>
+                    <% @group.user_groups.each do |ug| %>
                         <tr>
                             <td>
-                                <h4 class="ui image header">
-                                    <%= image_tag  u.image_url, class: "ui mini rounded image" %>
+                                <h4 class="ui image header" style="width: 100%;">
+                                    <%= image_tag  ug.user.image_url, class: "ui mini rounded image" %>
                                     <div class="content">
-                                        <%= u.name %>
-                                        <div class="sub header"><%= u.email %>
-                                        </div>
+                                        <%= ug.user.name %>
+                                        <div class="sub header"><%= ug.user.email %></div>
                                     </div>
+                                    <% if @group.created_by == current_user.id and ug.user_id != @group.created_by %>
+                                        <%= link_to "Remove",  user_group_path(ug), method: :delete, class: "ui right floated tiny basic button", data: {confirm: "Are you sure?"} %>
+                                    <% end %>
                                 </h4>
                             </td>
                         </tr>
@@ -67,6 +82,9 @@
     $(document).ready(function (e) {
         $('#add_new_member').on('click', function (e) {
             $('.ui.modal').modal('show');
+        });
+        $('#edit_project').on('click', function (e) {
+            $('.ui.modal.edit-project').modal('show');
         });
     });
 </script>
